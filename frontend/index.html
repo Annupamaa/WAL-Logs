@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>WAL Log Dashboard</title>
+</head>
+<body>
+    <h1>WAL Logs</h1>
+    <input type="text" id="token" placeholder="API Token" />
+    <button onclick="fetchLogs()">Fetch Logs</button>
+    <pre id="log-output"></pre>
+    <script>
+        async function fetchLogs() {
+            const token = document.getElementById('token').value;
+            const res = await fetch('/logs', {
+                headers: {
+                    'Authorization': `Bearer ${token}`
+                }
+            });
+            const data = await res.json();
+            document.getElementById('log-output').innerText = JSON.stringify(data, null, 2);
+        }
+    </script>
+</body>
+</html>
